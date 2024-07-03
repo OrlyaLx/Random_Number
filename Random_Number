@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Inițializează un obiect de tipul Random
+        Random random = new Random();
+
+        // Generează o listă de 100 de numere întregi aleatoare între 1 și 10
+        List<int> numbersList = Enumerable.Range(1, 100).Select(_ => random.Next(1, 11)).ToList();
+
+        // Afișează lista generată
+        Console.WriteLine("Lista de numere întregi aleatoare:");
+        foreach (var number in numbersList)
+        {
+            Console.Write(number + " ");
+        }
+        Console.WriteLine();
+
+        // Numără frecvența fiecărui număr în listă
+        Dictionary<int, int> frequencyDictionary = new Dictionary<int, int>();
+
+        foreach (var number in numbersList)
+        {
+            if (frequencyDictionary.ContainsKey(number))
+            {
+                frequencyDictionary[number]++;
+            }
+            else
+            {
+                frequencyDictionary[number] = 1;
+            }
+        }
+
+        // Afișează rezultatele
+        Console.WriteLine("\nFrecvența fiecărui număr:");
+        foreach (var entry in frequencyDictionary)
+        {
+            Console.WriteLine($"Numărul {entry.Key} se repetă de {entry.Value} ori.");
+        }
+    }
+}
